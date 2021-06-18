@@ -6,4 +6,4 @@ A Crypto Wallet App made using Flutter which uses Firebase Auth, Firestore and F
 - Visual Studio Code (extensions: Flutter, Dart, Awesome Flutter Snippets)
 - Flutter SDK v2.2.2
 - GitHub Desktop
-- Firebase
+- Firebase (Core, Firestore, FirebaseAuth)
