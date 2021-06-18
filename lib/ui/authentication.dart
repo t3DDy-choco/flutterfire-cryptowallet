@@ -42,11 +42,11 @@ class _AuthenticationState extends State<Authentication> {
               controller: _passwordField,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: "Email",
+                labelText: "Password",
                 labelStyle: TextStyle(
                   color: Colors.white,
                 ),
-                hintText: "johndoe@flutterfire.com",
+                hintText: "p@ssw0rd",
                 hintStyle: TextStyle(
                   color: Colors.white,
                 ),
