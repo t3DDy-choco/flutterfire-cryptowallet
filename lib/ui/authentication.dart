@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_cryptowallet/net/flutterfire.dart';
 
 class Authentication extends StatefulWidget {
   Authentication({Key? key}) : super(key: key);
@@ -58,7 +59,13 @@ class _AuthenticationState extends State<Authentication> {
                 color: Colors.white,
               ),
               child: MaterialButton(
-                onPressed: () => {},
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await register(_emailField.text, _passwordField.text);
+                  if (shouldNavigate) {
+                    // Navigate to Home
+                  }
+                },
                 child: Text(
                   "Login",
                   style: TextStyle(
@@ -76,7 +83,13 @@ class _AuthenticationState extends State<Authentication> {
                 color: Colors.white,
               ),
               child: MaterialButton(
-                onPressed: () => {},
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await signIn(_emailField.text, _passwordField.text);
+                  if (shouldNavigate) {
+                    // Navigate to Home
+                  }
+                },
                 child: Text(
                   "Register",
                   style: TextStyle(
