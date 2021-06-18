@@ -19,6 +19,7 @@ class _AddViewState extends State<AddView> {
   Widget build(BuildContext context) {
     return Material(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DropdownButton(
             value: dropdownValue,
@@ -56,7 +57,7 @@ class _AddViewState extends State<AddView> {
                 Navigator.of(context).pop();
               },
               child: Text(
-                "Login",
+                "Add",
                 style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20.0,
