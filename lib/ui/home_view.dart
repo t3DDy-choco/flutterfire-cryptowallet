@@ -19,6 +19,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    super.initState();
     getValues();
   }
 
@@ -58,15 +59,39 @@ class _HomeViewState extends State<HomeView> {
                 );
               return ListView(
                 children: snapshot.data!.docs.map((document) {
-                  return Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text("Coin Type: ${document.id}"),
-                        Text(
-                          "Coin Amount: \$${getValue(document.id, (document.data() as dynamic)['Amount']).toStringAsFixed(2)}",
-                        ),
-                      ],
+                  return Padding(
+                    padding: EdgeInsets.only(top: 15, right: 15, left: 15),
+                    child: Container(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      height: MediaQuery.of(context).size.height / 12,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: Colors.blueAccent,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Coin: ${document.id}",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18.0),
+                          ),
+                          Text(
+                            "\$${getValue(document.id, (document.data() as dynamic)['Amount']).toStringAsFixed(2)}",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18.0),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.remove_circle_rounded,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              print("Hello world!");
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }).toList(),
