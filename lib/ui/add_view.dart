@@ -17,6 +17,11 @@ class _AddViewState extends State<AddView> {
   String dropdownValue = 'bitcoin';
   TextEditingController _amountController = TextEditingController();
 
+  // Created padding element
+  SizedBox _padding() => SizedBox(
+        height: MediaQuery.of(context).size.height / 35,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -37,6 +42,7 @@ class _AddViewState extends State<AddView> {
               );
             }).toList(),
           ),
+          _padding(),
           Container(
             width: MediaQuery.of(context).size.width / 1.3,
             child: TextFormField(
@@ -47,12 +53,13 @@ class _AddViewState extends State<AddView> {
               ),
             ),
           ),
+          _padding(),
           Container(
             width: MediaQuery.of(context).size.width / 1.4,
             height: 45.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
-              color: Colors.white,
+              color: Colors.blueAccent,
             ),
             child: MaterialButton(
               onPressed: () async {
@@ -62,7 +69,7 @@ class _AddViewState extends State<AddView> {
               child: Text(
                 "Add",
                 style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   fontSize: 20.0,
                 ),
               ),
