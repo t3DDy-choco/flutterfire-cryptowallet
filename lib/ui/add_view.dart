@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_cryptowallet/net/flutterfire.dart';
 
 class AddView extends StatefulWidget {
   AddView({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class _AddViewState extends State<AddView> {
     'tether',
     'etherium',
   ];
-  String? dropdownValue = 'bitcoin';
+  String dropdownValue = 'bitcoin';
+  TextEditingController _amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _AddViewState extends State<AddView> {
             value: dropdownValue,
             onChanged: (String? value) {
               setState(() {
-                dropdownValue = value;
+                dropdownValue = value!;
               });
             },
             items: coins.map<DropdownMenuItem<String>>((String value) {
@@ -38,6 +40,7 @@ class _AddViewState extends State<AddView> {
           Container(
             width: MediaQuery.of(context).size.width / 1.3,
             child: TextFormField(
+              controller: _amountController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Coin Amount',
@@ -53,7 +56,7 @@ class _AddViewState extends State<AddView> {
             ),
             child: MaterialButton(
               onPressed: () async {
-                // TODO: Add Button
+                addCoin(dropdownValue, _amountController.text);
                 Navigator.of(context).pop();
               },
               child: Text(
