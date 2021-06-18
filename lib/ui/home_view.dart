@@ -33,6 +33,7 @@ class _HomeViewState extends State<HomeView> {
                 children: snapshot.data!.docs.map((document) {
                   return Container(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text("Coin Name: ${document.id}"),
                         Text(
