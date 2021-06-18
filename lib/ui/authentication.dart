@@ -13,6 +13,70 @@ class _AuthenticationState extends State<Authentication> {
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
 
+  // Creates a login Text Form Field
+  Container _loginFormFieldGenerator(TextEditingController controller,
+      String label, String hint, bool hideText) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 1.3,
+      child: TextFormField(
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        controller: controller,
+        obscureText: hideText,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            color: Colors.white,
+          ),
+          hintText: hint,
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Created a Button (login or register)
+  Container _generateButton(
+      String name, Future<bool> Function(String, String) press) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 1.4,
+      height: 45.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.white,
+      ),
+      child: MaterialButton(
+        onPressed: () async {
+          bool shouldNavigate =
+              await press(_emailField.text, _passwordField.text);
+          if (shouldNavigate) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeView(),
+              ),
+            );
+          }
+        },
+        child: Text(
+          name,
+          style: TextStyle(
+            color: Colors.blueAccent,
+            fontSize: 20.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Created padding element
+  SizedBox _padding() => SizedBox(
+        height: MediaQuery.of(context).size.height / 35,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,92 +87,22 @@ class _AuthenticationState extends State<Authentication> {
           color: Colors.blueAccent,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: _emailField,
-              decoration: InputDecoration(
-                labelText: "Email",
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                hintText: "johndoe@flutterfire.com",
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+            _loginFormFieldGenerator(
+                _emailField, "Email", "johndoe@flutterfire.com", false),
+            _padding(),
+            _loginFormFieldGenerator(
+                _passwordField, "Password", "p@ssw0rd", true),
+            _padding(),
+            _generateButton(
+              "Login",
+              signIn,
             ),
-            TextFormField(
-              controller: _passwordField,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                hintText: "p@ssw0rd",
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                color: Colors.white,
-              ),
-              child: MaterialButton(
-                onPressed: () async {
-                  bool shouldNavigate =
-                      await signIn(_emailField.text, _passwordField.text);
-                  if (shouldNavigate) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeView(),
-                      ),
-                    );
-                  }
-                },
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                color: Colors.white,
-              ),
-              child: MaterialButton(
-                onPressed: () async {
-                  bool shouldNavigate =
-                      await register(_emailField.text, _passwordField.text);
-                  if (shouldNavigate) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeView(),
-                      ),
-                    );
-                  }
-                },
-                child: Text(
-                  "Register",
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
+            _padding(),
+            _generateButton(
+              "Register",
+              register,
             ),
           ],
         ),
