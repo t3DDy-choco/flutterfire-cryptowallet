@@ -90,20 +90,28 @@ class _AuthenticationState extends State<Authentication> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _loginFormFieldGenerator(
-                _emailField, "Email", "johndoe@flutterfire.com", false),
-            _padding(),
+              _emailField,
+              "Email",
+              "johndoe@flutterfire.com",
+              false,
+            ), //  Create Email TextFormField
+            _padding(), //  Padding
             _loginFormFieldGenerator(
-                _passwordField, "Password", "p@ssw0rd", true),
-            _padding(),
+              _passwordField,
+              "Password",
+              "p@ssw0rd",
+              true,
+            ), //  Create Email TextFormField
+            _padding(), //  Padding
             _generateButton(
               "Login",
               signIn,
-            ),
-            _padding(),
+            ), //  Create Login button
+            _padding(), //  Padding
             _generateButton(
               "Register",
               register,
-            ),
+            ), //  Create Register button
           ],
         ),
       ),
