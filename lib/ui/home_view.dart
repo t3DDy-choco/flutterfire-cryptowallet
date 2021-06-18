@@ -61,10 +61,17 @@ class _HomeViewState extends State<HomeView> {
               return ListView(
                 children: snapshot.data!.docs.map((document) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 15, right: 15, left: 15),
+                    padding: EdgeInsets.only(
+                      top: 15,
+                      right: (MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 15
+                          : 200),
+                      left: 15,
+                    ),
                     child: Container(
                       padding: EdgeInsets.only(left: 20, right: 20),
-                      height: MediaQuery.of(context).size.height / 12,
+                      height: 80.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
                         color: Colors.blueAccent,
