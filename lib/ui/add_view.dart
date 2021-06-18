@@ -19,7 +19,10 @@ class _AddViewState extends State<AddView> {
 
   // Created padding element
   SizedBox _padding() => SizedBox(
-        height: MediaQuery.of(context).size.height / 35,
+        height: MediaQuery.of(context).size.height /
+            ((MediaQuery.of(context).orientation == Orientation.portrait
+                ? 35
+                : 15)),
       );
 
   @override
@@ -44,7 +47,10 @@ class _AddViewState extends State<AddView> {
           ),
           _padding(),
           Container(
-            width: MediaQuery.of(context).size.width / 1.3,
+            width: MediaQuery.of(context).size.width /
+                ((MediaQuery.of(context).orientation == Orientation.portrait
+                    ? 1.4
+                    : 3)),
             child: TextFormField(
               controller: _amountController,
               keyboardType: TextInputType.number,
@@ -55,7 +61,10 @@ class _AddViewState extends State<AddView> {
           ),
           _padding(),
           Container(
-            width: MediaQuery.of(context).size.width / 1.4,
+            width: MediaQuery.of(context).size.width /
+                ((MediaQuery.of(context).orientation == Orientation.portrait
+                    ? 1.4
+                    : 3)),
             height: 45.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
