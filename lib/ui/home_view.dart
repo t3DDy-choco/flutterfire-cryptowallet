@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_cryptowallet/net/api_methods.dart';
+import 'package:flutterfire_cryptowallet/net/flutterfire.dart';
 
 import 'add_view.dart';
 
@@ -86,8 +87,8 @@ class _HomeViewState extends State<HomeView> {
                               Icons.remove_circle_rounded,
                               color: Colors.red,
                             ),
-                            onPressed: () {
-                              print("Hello world!");
+                            onPressed: () async {
+                              await removeCoin(document.id);
                             },
                           ),
                         ],
