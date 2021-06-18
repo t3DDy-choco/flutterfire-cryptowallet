@@ -12,7 +12,7 @@ class _AddViewState extends State<AddView> {
   List<String> coins = [
     'bitcoin',
     'tether',
-    'etherium',
+    'ethereum',
   ];
   String dropdownValue = 'bitcoin';
   TextEditingController _amountController = TextEditingController();
