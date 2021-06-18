@@ -43,6 +43,24 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 
+  _invalidDialog(String title) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text(
+              'OK',
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   // Created a Button (login or register)
   Container _generateButton(
     String name,
@@ -68,7 +86,8 @@ class _AuthenticationState extends State<Authentication> {
                 builder: (context) => HomeView(),
               ),
             );
-          }
+          } else
+            _invalidDialog("Invalid Details");
         },
         child: Text(
           name,
